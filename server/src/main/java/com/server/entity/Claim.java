@@ -2,6 +2,7 @@ package com.server.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class Claim {
 	@Column(name = "contact_no", nullable = false)
 	private int contactNo;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	

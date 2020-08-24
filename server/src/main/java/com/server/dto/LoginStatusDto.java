@@ -2,15 +2,17 @@ package com.server.dto;
 
 public class LoginStatusDto extends StatusDto {
 
-	private int customerId;
-	private String name;
+	private int id;
+    private String name;
+    private String role;
 
-	public int getCustomerId() {
-		return customerId;
+
+	public int getId() {
+		return id;
 	}
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -21,4 +23,11 @@ public class LoginStatusDto extends StatusDto {
 		this.name = name;
 	}
 
+    public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 }

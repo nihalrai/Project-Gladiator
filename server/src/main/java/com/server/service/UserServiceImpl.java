@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.server.entity.Customer;
+import com.server.entity.User;
 import com.server.exception.UserServiceException;
 import com.server.repository.UserRepository;
 
@@ -21,6 +22,19 @@ public class UserServiceImpl implements UserService {
 		}
 		else {
 			throw new UserServiceException("Customer already registered");
+		}
+		
+    }
+    
+    @Override
+	public void register(User user) {
+        
+        // using isCustomerPresent of Customer entiy again
+		if(! userRepository.isCustomerPresent(user.getEmailId())) {
+			userRepository.save(user);
+		}
+		else {
+			throw new UserServiceException("User already registered");
 		}
 		
 	}

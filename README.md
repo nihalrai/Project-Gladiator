@@ -30,5 +30,5 @@
 > This project is not even started so do not clone :)
 
 
-
-<p align="center"> Made with ❤️ by Batch-845(General Insurance Team) </p>
+<br/><br/><br/>
+<footer> <p align="center"> Made with ❤️ by Batch-845(General Insurance Team) </p> </footer>

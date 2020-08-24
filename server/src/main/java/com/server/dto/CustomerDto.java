@@ -9,9 +9,13 @@ public class CustomerDto {
 	private String lastName;
 	private String emailId;
 	private LocalDate dateOfBirth;
-	private int contactNo;
+	private long contactNo;
 	private Address address;
-	private String password;
+    private String password;
+    private String city;
+    private int pincode;
+    private String landmark;
+}
 
 	public String getFirstName() {
 		return firstName;
@@ -45,20 +49,12 @@ public class CustomerDto {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public int getContactNo() {
+	public long getContactNo() {
 		return contactNo;
 	}
 
-	public void setContactNo(int contactNo) {
+	public void setContactNo(long contactNo) {
 		this.contactNo = contactNo;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
 	}
 
 	public String getPassword() {
@@ -69,4 +65,27 @@ public class CustomerDto {
 		this.password = password;
 	}
 
+    public String getCity() {
+		return city;
+    }
+    
+    public void setCity(String city) {
+		this.city = city;
+    }
+    
+    public int getPincode() {
+		return pincode;
+    }
+    
+    public void setPincode(int pincode) {
+		this.pincode = pincode;
+    }
+    
+    public String getLandmark() {
+		return landmark;
+    }
+    
+    public void setLandmark(String landmark) {
+		this.landmark = landmark;
+    }
 }

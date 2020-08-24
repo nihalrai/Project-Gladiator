@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.server.entity.Customer;
+import com.server.entity.User;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -19,6 +20,12 @@ public class UserRepositoryImpl implements UserRepository {
 	@Transactional
 	public void save(Customer customer) {
 		entityManager.merge(customer);
+    }
+    
+    @Override
+	@Transactional
+	public void save(User user) {
+		entityManager.merge(user);
 	}
 
 	@Override
@@ -40,7 +47,7 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public int findByUsernamePassword(String email, String password) {
+	public int findByEmailPassword(String email, String password) {
 		return (int) entityManager.createNamedQuery("fetch-login").setParameter("email", email)
 				.setParameter("password", password).getSingleResult();
 	}

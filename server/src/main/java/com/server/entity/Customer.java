@@ -31,12 +31,12 @@ public class Customer {
 	private LocalDate dateOfBirth;
 	
 	@Column(name = "contact_no", nullable=false)
-	private int contactNo;
+	private long contactNo;
 	
 	@Column(name = "password", nullable = false)
 	private String password;
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="address_id")
 	private Address address;
 	
@@ -82,11 +82,11 @@ public class Customer {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public int getContactNo() {
+	public long getContactNo() {
 		return contactNo;
 	}
 
-	public void setContactNo(int contactNo) {
+	public void setContactNo(long contactNo) {
 		this.contactNo = contactNo;
 	}
 
