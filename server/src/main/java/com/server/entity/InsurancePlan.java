@@ -7,13 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "INSURANCE_PLAN")
 public class InsurancePlan {
 	
 	@Id
-	@SequenceGenerator(name = "id", initialValue = 1, allocationSize=1)
+	@SequenceGenerator(name = "insurance_id", initialValue = 1, allocationSize=1)
 	@GeneratedValue
 	private int id;
 	
@@ -31,20 +30,6 @@ public class InsurancePlan {
 	
 	@Column(name = "commission", nullable=false)
 	private int commission;
-
-	public InsurancePlan() {
-		super();
-	}
-
-	public InsurancePlan(int id, String name, String type, int duration, double amount, int commission) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.type = type;
-		this.duration = duration;
-		this.amount = amount;
-		this.commission = commission;
-	}
 
 	public int getId() {
 		return id;

@@ -12,12 +12,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "PAYMENT")
+@Table(name = "TBL_PAYMENT")
 public class Payment {
 	@Id
-	@SequenceGenerator(name = "id", initialValue = 1, allocationSize = 1)
+	@SequenceGenerator(name = "payment_id", initialValue = 1, allocationSize = 1)
 	@GeneratedValue
 	private int id;
 
@@ -33,19 +32,6 @@ public class Payment {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
-
-	public Payment() {
-		super();
-	}
-
-	public Payment(int id, String mode, LocalDate date, double amount, Customer customer) {
-		super();
-		this.id = id;
-		this.mode = mode;
-		this.date = date;
-		this.amount = amount;
-		this.customer = customer;
-	}
 
 	public int getId() {
 		return id;

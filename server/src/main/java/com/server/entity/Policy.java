@@ -12,13 +12,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "POLICY")
 public class Policy {
 
 	@Id
-	@SequenceGenerator(name = "id", initialValue = 1, allocationSize = 1)
+	@SequenceGenerator(name = "payment_id", initialValue = 1, allocationSize = 1)
 	@GeneratedValue
 	private int id;
 
@@ -26,45 +25,27 @@ public class Policy {
 	private String status;
 
 	@Column(name = "issue_date", nullable = false)
-	private LocalDate issue_date;
+	private LocalDate issueDate;
 
 	@Column(name = "expiry_date", nullable = false)
-	private LocalDate expiry_date;
+	private LocalDate expiryDate;
 
 	@Column(name = "duration", nullable = false)
 	private int duration;
 
 	@Column(name = "policy_amount", nullable = false)
-	private double policy_amount;
+	private double policyAmount;
 
 	@Column(name = "plan_amount", nullable = false)
-	private double plan_amount;
+	private double planAmount;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "insurance_plan_id")
+	@JoinColumn(name = "insurance_id")
 	private InsurancePlan insurancePlan;
-
-	public Policy() {
-		super();
-	}
-
-	public Policy(int id, String status, LocalDate issue_date, LocalDate expiry_date, int duration,
-			double policy_amount, double plan_amount, Customer customer, InsurancePlan insurancePlan) {
-		super();
-		this.id = id;
-		this.status = status;
-		this.issue_date = issue_date;
-		this.expiry_date = expiry_date;
-		this.duration = duration;
-		this.policy_amount = policy_amount;
-		this.plan_amount = plan_amount;
-		this.customer = customer;
-		this.insurancePlan = insurancePlan;
-	}
 
 	public int getId() {
 		return id;
@@ -82,20 +63,20 @@ public class Policy {
 		this.status = status;
 	}
 
-	public LocalDate getIssue_date() {
-		return issue_date;
+	public LocalDate getIssueDate() {
+		return issueDate;
 	}
 
-	public void setIssue_date(LocalDate issue_date) {
-		this.issue_date = issue_date;
+	public void setIssueDate(LocalDate issueDate) {
+		this.issueDate = issueDate;
 	}
 
-	public LocalDate getExpiry_date() {
-		return expiry_date;
+	public LocalDate getExpiryDate() {
+		return expiryDate;
 	}
 
-	public void setExpiry_date(LocalDate expiry_date) {
-		this.expiry_date = expiry_date;
+	public void setExpiryDate(LocalDate expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 
 	public int getDuration() {
@@ -106,20 +87,20 @@ public class Policy {
 		this.duration = duration;
 	}
 
-	public double getPolicy_amount() {
-		return policy_amount;
+	public double getPolicyAmount() {
+		return policyAmount;
 	}
 
-	public void setPolicy_amount(double policy_amount) {
-		this.policy_amount = policy_amount;
+	public void setPolicyAmount(double policyAmount) {
+		this.policyAmount = policyAmount;
 	}
 
-	public double getPlan_amount() {
-		return plan_amount;
+	public double getPlanAmount() {
+		return planAmount;
 	}
 
-	public void setPlan_amount(double plan_amount) {
-		this.plan_amount = plan_amount;
+	public void setPlan_amount(double planAmount) {
+		this.planAmount = planAmount;
 	}
 
 	public Customer getCustomer() {

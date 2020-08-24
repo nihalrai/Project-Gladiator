@@ -7,12 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="ADDRESS")
 public class Address {
 	
 	@Id
-	@SequenceGenerator(name = "id", initialValue = 1, allocationSize=1)
+	@SequenceGenerator(name = "addr_id", initialValue = 0, allocationSize=1)
 	@GeneratedValue
 	private int id;
 	
@@ -25,17 +26,6 @@ public class Address {
 	@Column(name = "landMark")
 	private String landMark;
 	
-	
-	public Address() {
-		super();
-	}
-	public Address(int id, String city, int pincode, String landMark) {
-		super();
-		this.id = id;
-		this.city = city;
-		this.pincode = pincode;
-		this.landMark = landMark;
-	}
 	public int getId() {
 		return id;
 	}
