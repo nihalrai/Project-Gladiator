@@ -15,7 +15,7 @@ public interface UserRepository {
 
 	List<Customer> findAll();
 
-	int findByUsernamePassword(String email, String password);
+	int findByEmailPassword(String email, String password);
 
 	boolean isCustomerPresent(String email);
 

@@ -23,19 +23,19 @@ public class Claim {
 	@GeneratedValue
 	private int id;
 
-	@Column(name = "date", nullable = false)
+	@Column(name = "date")
 	private LocalDate date;
 
-	@Column(name = "status", nullable = false)
+	@Column(name = "status")
 	private String status;
 
-	@Column(name = "amount", nullable = false)
+	@Column(name = "amount")
 	private double amount;
 
-	@Column(name = "reason", nullable = false)
+	@Column(name = "reason")
 	private String reason;
 
-	@Column(name = "contact_no", nullable = false)
+	@Column(name = "contact_no")
 	private int contactNo;
 
 	@ManyToOne(cascade = CascadeType.ALL)

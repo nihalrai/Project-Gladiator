@@ -31,7 +31,6 @@ public class UserRegistrationController {
             customer.setContactNo(customerDto.getContactNo());
             customer.setDateOfBirth(customerDto.getDateOfBirth());
             customer.setEmailId(customerDto.getEmailId());
-            customer.setPassword(customerDto.getPassword());
 
             Address address = new Address();
             address.setCity(customerDto.getCity());

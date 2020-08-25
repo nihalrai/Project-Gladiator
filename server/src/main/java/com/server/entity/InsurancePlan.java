@@ -16,19 +16,19 @@ public class InsurancePlan {
 	@GeneratedValue
 	private int id;
 	
-	@Column(name = "name", nullable=false)
+	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "type", nullable=false)
+	@Column(name = "type")
 	private String type;
 	
-	@Column(name = "duration", nullable=false)
+	@Column(name = "duration")
 	private int duration;
 	
-	@Column(name = "amount", nullable=false)
+	@Column(name = "amount")
 	private double amount;
 	
-	@Column(name = "commission", nullable=false)
+	@Column(name = "commission")
 	private int commission;
 
 	public int getId() {

@@ -21,22 +21,22 @@ public class Policy {
 	@GeneratedValue
 	private int id;
 
-	@Column(name = "status", nullable = false)
+	@Column(name = "status")
 	private String status;
 
-	@Column(name = "issue_date", nullable = false)
+	@Column(name = "issue_date")
 	private LocalDate issueDate;
 
-	@Column(name = "expiry_date", nullable = false)
+	@Column(name = "expiry_date")
 	private LocalDate expiryDate;
 
-	@Column(name = "duration", nullable = false)
+	@Column(name = "duration")
 	private int duration;
 
-	@Column(name = "policy_amount", nullable = false)
+	@Column(name = "policy_amount")
 	private double policyAmount;
 
-	@Column(name = "plan_amount", nullable = false)
+	@Column(name = "plan_amount")
 	private double planAmount;
 
 	@OneToOne(cascade = CascadeType.ALL)

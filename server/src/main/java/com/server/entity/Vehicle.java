@@ -25,31 +25,31 @@ public class Vehicle {
 	@GeneratedValue
 	private int id;
 	
-	@Column(name = "type", nullable=false)
+	@Column(name = "type")
 	private String type;
 	
-	@Column(name = "model", nullable=false)
+	@Column(name = "model")
 	private String model;
 	
-	@Column(name = "manufacture", nullable=false)
+	@Column(name = "manufacture")
 	private String manufacture;
 	
-	@Column(name = "driving_license", nullable=false)
+	@Column(name = "driving_license")
 	private String drivingLicense;
 	
-	@Column(name = "purchase_date", nullable=false)
+	@Column(name = "purchase_date")
     private LocalDate purchaseDate;
 	
-	@Column(name = "registration_no", nullable=false)
+	@Column(name = "registration_no")
 	private String registrationNo;
 	
-	@Column(name = "engine_no", nullable=false)
+	@Column(name = "engine_no")
 	private String engineNo;
 	
-	@Column(name = "chassis_number", nullable=false)
+	@Column(name = "chassis_number")
 	private String chassisNo;
 	
-	@Column(name = "engine_type", nullable=false)
+	@Column(name = "engine_type")
 	private String engineType;
 	//private int customerNo;  --fk
 	

@@ -21,16 +21,16 @@ public class User {
 	@GeneratedValue
 	private int id;
 	
-	@Column(name = "emailId", nullable = false)
+	@Column(name = "emailId")
 	private String emailId;
 	
-	@Column(name = "password", nullable = false)
+	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "role", nullable = false)
+	@Column(name = "role")
 	private String role;
 	
-	@Column(name = "last_password_set", nullable = false)
+	@Column(name = "last_password_set")
 	private LocalDate lastPasswordSet;
 	
 	@OneToOne(cascade = CascadeType.ALL)

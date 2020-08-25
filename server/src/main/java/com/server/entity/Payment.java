@@ -20,13 +20,13 @@ public class Payment {
 	@GeneratedValue
 	private int id;
 
-	@Column(name = "mode", nullable = false)
+	@Column(name = "mode")
 	private String mode;
 
-	@Column(name = "date", nullable = false)
+	@Column(name = "date")
 	private LocalDate date;
 
-	@Column(name = "amount", nullable = false)
+	@Column(name = "amount")
 	private double amount;
 
 	@OneToOne(cascade = CascadeType.ALL)
