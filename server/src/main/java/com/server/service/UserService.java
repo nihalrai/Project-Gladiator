@@ -18,6 +18,18 @@ public interface UserService {
 	List<String> login(String email, String password);
 
 	boolean isUserPresent(String email);
+	
+	Customer getCustomerById(int id);
+	
+	User findByResetToken(String resetToken);
+	
+	User getUserByEmailandPassword(String email, String password);
+	
+	void addOrUpdateUser(User user);
+	
+	User getUserByResetToken(String token);
+	
+	User getUserByEmail(String email);
 
 	public static String getHashedString(String text) {
 		try {

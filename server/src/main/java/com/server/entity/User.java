@@ -1,6 +1,7 @@
 package com.server.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +19,8 @@ import com.server.service.UserService;
 @Table(name = "TBL_USER")
 @NamedQuery(name = "is-user-present", query = "select count(u.emailId) from User u where u.emailId = :em")
 @NamedQuery(name = "fetch-login", query = ("select u from User u where u.emailId = :email and u.password = :password"))
+@NamedQuery(name = "fetch-user-using-token", query = ("select u from User u where u.resetToken = :token"))
+@NamedQuery(name = "fetch-user-using-email", query = ("select u from User u where u.email = :email"))
 public class User {
 
 	@Id
@@ -36,6 +39,15 @@ public class User {
 
 	@Column(name = "last_password_set")
 	private LocalDate lastPasswordSet;
+
+	@Column(name = "createdOn")
+	private LocalDate createdOn;
+
+	@Column(name = "lastLogin")
+	private LocalDateTime lastLogin;
+
+	@Column(name = "resetToken")
+	private String resetToken;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id")
@@ -90,6 +102,30 @@ public class User {
 	public void setPassword(String password) {
 		this.password = UserService.getHashedString(password);
 
+	}
+
+	public LocalDate getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(LocalDate createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public LocalDateTime getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(LocalDateTime lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
+	public String getResetToken() {
+		return resetToken;
+	}
+
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
 	}
 
 }

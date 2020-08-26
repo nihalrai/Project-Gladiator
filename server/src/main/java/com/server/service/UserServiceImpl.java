@@ -69,4 +69,41 @@ public class UserServiceImpl implements UserService {
 			return true;
 		}
 	}
+
+	@Override
+	public User findByResetToken(String resetToken) {
+		return null;
+	}
+
+	@Override
+	public User getUserByEmailandPassword(String email, String password) {
+
+		try {
+			User user = userRepository.findByEmailPassword(email, UserService.getHashedString(password));
+			return user;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public void addOrUpdateUser(User user) {
+		userRepository.save(user);
+	}
+
+	@Override
+	public User getUserByResetToken(String token) {
+		return userRepository.findUserByResetToken(token);
+	}
+
+	@Override
+	public Customer getCustomerById(int id) {
+		return userRepository.findCustomerById(id);
+	}
+
+	@Override
+	public User getUserByEmail(String email) {
+		return userRepository.findUserByEmail(email);
+	}
+
 }

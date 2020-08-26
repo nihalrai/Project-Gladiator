@@ -1,5 +1,6 @@
 package com.server.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.server.exception.UserServiceException;
 import com.server.dto.LoginStatusDto;
 import com.server.dto.StatusDto;
+import com.server.entity.User;
 import com.server.dto.LoginDto;
 import com.server.service.UserService;
 
@@ -30,7 +32,10 @@ public class UserLoginController {
 			}
 
 			List<String> sessionData = userService.login(loginDto.getEmail(), loginDto.getPassword());
-
+			User user = userService.getUserByEmailandPassword(loginDto.getEmail(), loginDto.getPassword());
+			user.setLastLogin(LocalDateTime.now());
+			userService.addOrUpdateUser(user);
+			
 			if (sessionData == null) {
 				throw new UserServiceException("Incorrect Password!");
 			}

@@ -55,7 +55,23 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public User findByEmailPassword(String email, String password) {
-		return (User) entityManager.createNamedQuery("fetch-login").setParameter("email", email)
-				.setParameter("password", password).getSingleResult();
+		return (User) entityManager.createNamedQuery("fetch-login")
+				.setParameter("email", email)
+				.setParameter("password", password)
+				.getSingleResult();
+	}
+
+	@Override
+	public User findUserByResetToken(String token) {
+		return (User) entityManager.createNamedQuery("fetch-user-using-token")
+				.setParameter("token", token)
+				.getSingleResult();
+	}
+
+	@Override
+	public User findUserByEmail(String email) {
+		return (User) entityManager.createNamedQuery("find-user-by-email")
+				.setParameter("email", email)
+				.getSingleResult();
 	}
 }

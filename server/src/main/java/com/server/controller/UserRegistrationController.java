@@ -3,6 +3,7 @@ package com.server.controller;
 import java.time.LocalDate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,9 +49,16 @@ public class UserRegistrationController {
             user.setPassword(customerDto.getPassword());
             user.setCustomer(customer);
             user.setLastPasswordSet(LocalDate.now());
+            user.setCreatedOn(LocalDate.now());
             user.setRole("USER");
             
             userService.register(user);
+			
+            SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
+			passwordResetEmail.setFrom("noreply@noreply.com"); // email of sender
+			passwordResetEmail.setTo(user.getEmailId());
+			passwordResetEmail.setSubject("Registered successfully");
+			passwordResetEmail.setText("Thanks for signing up on General Insurance portal");
 			
 			StatusDto status = new StatusDto();
 			status.setMessage("Registered successfully!");

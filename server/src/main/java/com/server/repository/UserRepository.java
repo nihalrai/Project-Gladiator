@@ -20,5 +20,9 @@ public interface UserRepository {
 	boolean isCustomerPresent(String email);
 
 	boolean isUserPresent(String email);
+	
+	User findUserByResetToken(String user);
+	 
+	User findUserByEmail(String email);
 
 }
