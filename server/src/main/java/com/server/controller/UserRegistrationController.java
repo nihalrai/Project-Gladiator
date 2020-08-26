@@ -3,6 +3,7 @@ package com.server.controller;
 import java.time.LocalDate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import com.server.entity.Customer;
 import com.server.entity.Address;
 import com.server.entity.User;
 import com.server.exception.UserServiceException;
+import com.server.service.EmailService;
 import com.server.service.UserService;
 
 @RestController
@@ -23,6 +25,9 @@ public class UserRegistrationController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@PostMapping(path = "/register", consumes = "application/json", produces = "application/json")
 	public StatusDto register(@RequestBody CustomerDto customerDto) {
@@ -53,13 +58,20 @@ public class UserRegistrationController {
             user.setRole("USER");
             
             userService.register(user);
-			
-            SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
-			passwordResetEmail.setFrom("noreply@noreply.com"); // email of sender
-			passwordResetEmail.setTo(user.getEmailId());
-			passwordResetEmail.setSubject("Registered successfully");
-			passwordResetEmail.setText("Thanks for signing up on General Insurance portal");
-			
+			try {
+	            SimpleMailMessage registeredMail = new SimpleMailMessage();
+	            registeredMail.setFrom("nk.theraja@gmail.com"); // email of sender
+	            registeredMail.setTo("niihalrai@gmail.com");
+	            registeredMail.setSubject("Registered successfully");
+	            registeredMail.setText("Thanks for signing up on General Insurance portal");
+				
+	            System.out.println("Sending mail...");
+	            emailService.sendEmail(registeredMail);
+	            System.out.println("Sent mail...");
+			}catch(MailException e){
+				e.printStackTrace();
+			}
+            
 			StatusDto status = new StatusDto();
 			status.setMessage("Registered successfully!");
 			status.setStatus(StatusDto.StatusType.SUCCESS);

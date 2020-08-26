@@ -3,5 +3,7 @@ package com.server.service;
 import org.springframework.mail.SimpleMailMessage;
 
 public interface EmailService {
-	public void sendEmail(SimpleMailMessage email);
+	public boolean sendEmail(SimpleMailMessage email);
+	public void sendSimpleMessage(String to, String subject, String text);
+	
 }

@@ -20,7 +20,7 @@ import com.server.service.UserService;
 @NamedQuery(name = "is-user-present", query = "select count(u.emailId) from User u where u.emailId = :em")
 @NamedQuery(name = "fetch-login", query = ("select u from User u where u.emailId = :email and u.password = :password"))
 @NamedQuery(name = "fetch-user-using-token", query = ("select u from User u where u.resetToken = :token"))
-@NamedQuery(name = "fetch-user-using-email", query = ("select u from User u where u.email = :email"))
+@NamedQuery(name = "fetch-user-using-email", query = ("select u from User u where u.emailId = :email"))
 public class User {
 
 	@Id
