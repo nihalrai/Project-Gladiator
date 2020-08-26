@@ -13,20 +13,20 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TBL_PAYMENT")
+@Table(name = "PAYMENT")
 public class Payment {
 	@Id
 	@SequenceGenerator(name = "payment_id", initialValue = 1, allocationSize = 1)
 	@GeneratedValue
 	private int id;
 
-	@Column(name = "mode")
+	@Column(name = "payment_mode")
 	private String mode;
 
-	@Column(name = "date")
+	@Column(name = "payment_date")
 	private LocalDate date;
 
-	@Column(name = "amount")
+	@Column(name = "payment_amount")
 	private double amount;
 
 	@OneToOne(cascade = CascadeType.ALL)

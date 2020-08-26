@@ -1,3 +1,4 @@
+
 package com.server.entity;
 
 import java.time.LocalDate;
@@ -5,6 +6,7 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,7 +25,7 @@ public class Claim {
 	@GeneratedValue
 	private int id;
 
-	@Column(name = "date")
+	@Column(name = "claim_date")
 	private LocalDate date;
 
 	@Column(name = "status")
@@ -38,12 +40,12 @@ public class Claim {
 	@Column(name = "contact_no")
 	private int contactNo;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
-	@OneToOne()
-	@JoinColumn(name = "id")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "policy_id")
 	private Policy policy;
 
 	public Policy getPolicy() {

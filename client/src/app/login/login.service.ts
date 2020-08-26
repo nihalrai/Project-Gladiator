@@ -12,7 +12,7 @@ export class LoginService {
 
     login(loginDto){
         const url="http://localhost:8080/login";
-        const headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8', 'Accept': 'application/json'});
+        const headers = new HttpHeaders({'Content-Type': 'application/json', 'Accept': 'application/json'});
         return this.http.post<LoginDto>(url, loginDto, {headers: headers});
     }
 

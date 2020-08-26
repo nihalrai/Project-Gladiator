@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
-import { LoginDto, DataDto } from './login.dto';
+import { LoginDto } from './login.dto';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,6 @@ import { LoginDto, DataDto } from './login.dto';
 export class LoginComponent implements OnInit {
 
   loginDto: LoginDto = new LoginDto();
-  data: DataDto = new DataDto();
 
   constructor(private loginService: LoginService, private router: Router) { }
 
@@ -19,7 +18,7 @@ export class LoginComponent implements OnInit {
   }
   login(){
     this.loginService.login(this.loginDto).subscribe(data =>{
-      //alert(JSON.stringify(this.data));
+      alert(JSON.stringify(this.data));
 
       if(data.status == 'SUCCESS'){
         let id = data.customerId;

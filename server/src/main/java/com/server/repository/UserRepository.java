@@ -11,12 +11,14 @@ public interface UserRepository {
     
     void save(User user);
 
-	Customer findById(int id);
+	Customer findCustomerById(int id);
 
 	List<Customer> findAll();
 
-	int findByEmailPassword(String email, String password);
+	User findByEmailPassword(String email, String password);
 
 	boolean isCustomerPresent(String email);
+
+	boolean isUserPresent(String email);
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterationService } from './registration.service';
 import { Router } from '@angular/router';
-import { FormsModule, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormsModule, Validators } from '@angular/forms';
 import { Customer } from '../model/customer';
 
 @Component({
@@ -13,12 +13,10 @@ import { Customer } from '../model/customer';
 export class RegistrationComponent implements OnInit {
 
   customer: Customer = new Customer();
-  registerForm: FormGroup;
 
   constructor(
       private customerService: RegisterationService,
-      private router: Router,
-      private formBuilder: FormBuilder,
+      private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +32,9 @@ export class RegistrationComponent implements OnInit {
 
   register(){
     //console.log(this.customer);
+    alert(JSON.stringify(this.customer))
     this.customerService.register(this.customer).subscribe(data =>{
+      alert(JSON.stringify(data));
       if (data.status == 'SUCCESS'){
         // Verify your email address and re-login
         // Show registration successfull

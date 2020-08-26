@@ -1,12 +1,28 @@
-<h2 style="text-align: center;">Registeration</h2>
-<form (ngSubmit) = "register()">
-    <b>Name</b><input type="text" placeholder="Enter Name" [(ngModel)]=customer.name name="name"><br/>
-    <b>Email Address</b><input type="email" placeholder="Enter Email Address" [(ngModel)]=customer.email name="email"><br/>
-    <b>Password</b><input type="password" placeholder="Enter Password" [(ngModel)]=customer.password name="password"><br/>
-    <b>Date of Birth</b><input type="date" placeholder="Enter date of birth" [(ngModel)]=customer.dob name="dob"><br />
-    <b>Contact No.</b><input type="number" placeholder="Enter contact number" [(ngModel)]=customer.contactNo name="contactNo"><br />
-    <b>City</b><input type="text" placeholder="Enter city" [(ngModel)]=customer.city name="city"><br />
-    <b>pinocde</b><input type="number" placeholder="Enter pinocde" [(ngModel)]=customer.pincode name="pincode"><br />
-    <b>landmark</b><input type="text" placeholder="Enter landmark" [(ngModel)]=customer.landmark name="landmark"><br />
-    <button type="submit">Register</button>
-  </form>
+<html>
+<head>
+    <title> LTI Insurance </title>   
+</head>
+    <body>
+    <div class="login-box">
+    <img src="../assets/image/avatar.png" class="avatar">
+        <h1>Register</h1>
+            <form (ngSubmit) = "register()">
+                <input type="text" id="name" [(ngModel)]=customer.name name="name" placeholder="Your name..">
+                <input type="email" id="email" [(ngModel)]=customer.email name="email" placeholder="abc@xyz..">
+                <input type="Date" id="dob" [(ngModel)]=customer.dob name="dob" placeholder="DD/MM/YY">
+                <input type="number" id="contact" [(ngModel)]=customer.contactNo name="contact" placeholder="Enter your contact no">
+                <input type="number" id="pincode" [(ngModel)]=customer.pincode name="pincode" placeholder="Enter your pinocde">
+                <input type="text" id="city" [(ngModel)]=customer.city name="city" placeholder="Enter your city">
+                <input type="text" id="landmark" [(ngModel)]=customer.landmark name="landmark" placeholder="Enter your landmark">
+                <input type="password" id="password" [(ngModel)]=customer.password name="password" placeholder="Enter password">
+                <input type="password" id="cpassword" name="cpassword" placeholder="Confirm password">
+           
+            <input type="submit" name="submit" value="Register">
+               
+            </form>
+        
+        
+        </div>
+    
+    </body>
+</html>

@@ -19,7 +19,7 @@ public class InsurancePlan {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "type")
+	@Column(name = "insurance_type")
 	private String type;
 	
 	@Column(name = "duration")

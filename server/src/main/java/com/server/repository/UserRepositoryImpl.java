@@ -29,7 +29,7 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public Customer findById(int id) {
+	public Customer findCustomerById(int id) {
 		return entityManager.find(Customer.class, id);
 	}
 
@@ -41,14 +41,21 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public boolean isCustomerPresent(String email) {
-		return ((Number)entityManager.createNamedQuery("is-present")
+		return ((Number)entityManager.createNamedQuery("is-customer-present")
+				.setParameter("em", email)
+				.getSingleResult()).intValue()== 1? true:false;
+	}
+	
+	@Override
+	public boolean isUserPresent(String email) {
+		return ((Number)entityManager.createNamedQuery("is-user-present")
 				.setParameter("em", email)
 				.getSingleResult()).intValue()== 1? true:false;
 	}
 
 	@Override
-	public int findByEmailPassword(String email, String password) {
-		return (int) entityManager.createNamedQuery("fetch-login").setParameter("email", email)
+	public User findByEmailPassword(String email, String password) {
+		return (User) entityManager.createNamedQuery("fetch-login").setParameter("email", email)
 				.setParameter("password", password).getSingleResult();
 	}
 }

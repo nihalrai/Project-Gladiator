@@ -5,38 +5,29 @@ import java.time.LocalDate;
 import com.server.entity.Address;
 
 public class CustomerDto {
-	private String firstName;
-	private String lastName;
-	private String emailId;
+	private String name;
+	private String email;
 	private LocalDate dateOfBirth;
 	private long contactNo;
-	private Address address;
     private String password;
     private String city;
     private int pincode;
     private String landmark;
 
-	public String getFirstName() {
-		return firstName;
-    }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getName() {
+        return name;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmailId() {
-        return emailId;
+        return email;
     }
 
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
+    public void setEmailId(String email) {
+        this.email = email;
     }
 
     public LocalDate getDateOfBirth() {

@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "GeneralInsurance"
+    }
+  },
+  "defaultProject": "GeneralInsurance",
+  "cli": {
+    "analytics": false
+  }
 }

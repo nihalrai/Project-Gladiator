@@ -1,5 +1,20 @@
-<form (ngSubmit) = "login()">
-    <b>Email</b><input type="text" placeholder="Enter email" [(ngModel)]=loginDto.email name="email">
-    <b>Password</b><input type="password" placeholder="Enter Password" [(ngModel)]=loginDto.password name="password">
-    <button type="submit">Login</button>
-</form>
+<html>
+<head>
+    <title> LTI Insurance </title>   
+</head>
+    <body>
+    <div class="login-box">
+    <img src="../assets/image/avatar.png" class="avatar">
+        <h1>Login </h1>
+            <form (ngSubmit) = "login()">
+            <p>Email</p>
+            <input type="email" [(ngModel)]=loginDto.email name="email" placeholder="">
+            <p>Password</p>
+            <input type="password" [(ngModel)]=loginDto.password name="password" placeholder="">
+            <input type="submit" name="submit" value="Login">
+            <a href="#">Forget Password</a>    
+            </form>
+        </div>
+    
+    </body>
+</html>

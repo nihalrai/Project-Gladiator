@@ -5,14 +5,13 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
@@ -25,20 +24,20 @@ public class Vehicle {
 	@GeneratedValue
 	private int id;
 	
-	@Column(name = "type")
+	@Column(name = "vehicle_type")
 	private String type;
 	
 	@Column(name = "model")
 	private String model;
 	
-	@Column(name = "manufacture")
-	private String manufacture;
+	@Column(name = "manufacturer")
+	private String manufacturer;
 	
 	@Column(name = "driving_license")
 	private String drivingLicense;
 	
 	@Column(name = "purchase_date")
-    private LocalDate purchaseDate;
+	private LocalDate purchaseDate;
 	
 	@Column(name = "registration_no")
 	private String registrationNo;
@@ -46,14 +45,16 @@ public class Vehicle {
 	@Column(name = "engine_no")
 	private String engineNo;
 	
-	@Column(name = "chassis_number")
+	@Column(name = "chassis_no")
 	private String chassisNo;
 	
 	@Column(name = "engine_type")
 	private String engineType;
-	//private int customerNo;  --fk
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@Column(name = "last_renew_date")
+	private LocalDate lastRenewDate;
+	
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
@@ -64,6 +65,15 @@ public class Vehicle {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	
+	public LocalDate getLastRenewDate() {
+		return lastRenewDate;
+	}
+
+	public void setLastRenewDate(LocalDate lastRenewDate) {
+		this.lastRenewDate = lastRenewDate;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -82,11 +92,11 @@ public class Vehicle {
 	public void setModel(String model) {
 		this.model = model;
 	}
-	public String getManufacture() {
-		return manufacture;
+	public String getManufacturer() {
+		return manufacturer;
 	}
-	public void setManufacture(String manufacture) {
-		this.manufacture = manufacture;
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
 	}
 	public String getDrivingLicense() {
 		return drivingLicense;

@@ -12,21 +12,25 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "POLICY")
 public class Policy {
 
 	@Id
-	@SequenceGenerator(name = "payment_id", initialValue = 1, allocationSize = 1)
+	@SequenceGenerator(name = "policy_id", initialValue = 1, allocationSize = 1)
 	@GeneratedValue
 	private int id;
 
 	@Column(name = "status")
 	private String status;
 
+	@JsonIgnore
 	@Column(name = "issue_date")
 	private LocalDate issueDate;
 
+	@JsonIgnore
 	@Column(name = "expiry_date")
 	private LocalDate expiryDate;
 
@@ -98,10 +102,10 @@ public class Policy {
 	public double getPlanAmount() {
 		return planAmount;
 	}
-
-	public void setPlan_amount(double planAmount) {
+	public void setPlanAmount(double planAmount) {
 		this.planAmount = planAmount;
 	}
+
 
 	public Customer getCustomer() {
 		return customer;

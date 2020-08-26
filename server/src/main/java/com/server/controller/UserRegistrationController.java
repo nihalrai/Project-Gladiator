@@ -3,8 +3,10 @@ package com.server.controller;
 import java.time.LocalDate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.server.dto.CustomerDto;
 import com.server.dto.StatusDto;
@@ -14,12 +16,14 @@ import com.server.entity.User;
 import com.server.exception.UserServiceException;
 import com.server.service.UserService;
 
+@RestController
+@CrossOrigin
 public class UserRegistrationController {
 	
 	@Autowired
 	private UserService userService;
 	
-	@PostMapping(path = "/register", consumes = "multipart/form-data", produces = "application/json")
+	@PostMapping(path = "/register", consumes = "application/json", produces = "application/json")
 	public StatusDto register(@RequestBody CustomerDto customerDto) {
 		try {
 			
@@ -27,7 +31,7 @@ public class UserRegistrationController {
 			
             //BeanUtils.copyProperties(customerDto, customer);
             //Redundant code, will be place in a helper method
-            customer.setName(customerDto.getFirstName() + " " + customerDto.getLastName());
+            customer.setName(customerDto.getName());
             customer.setContactNo(customerDto.getContactNo());
             customer.setDateOfBirth(customerDto.getDateOfBirth());
             customer.setEmailId(customerDto.getEmailId());

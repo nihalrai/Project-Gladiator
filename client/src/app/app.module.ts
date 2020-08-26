@@ -13,9 +13,9 @@ import { RenewInsuranceComponent } from './renew-insurance/renew-insurance.compo
 import { PremiumEstimateComponent } from './premium-estimate/premium-estimate.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { LogoutComponent } from './logout/logout.component';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { NavigatorComponent } from './navigator/navigator.component';
 
 @NgModule({
   declarations: [
@@ -27,9 +27,9 @@ import { RegistrationComponent } from './registration/registration.component';
     PremiumEstimateComponent,
     UserDashboardComponent,
     AdminDashboardComponent,
-    LogoutComponent,
     HomeComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    NavigatorComponent
   ],
   imports: [
     BrowserModule,
