@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterationService } from './registration.service';
 import { Router } from '@angular/router';
-import { FormsModule, Validators } from '@angular/forms';
+import { FormsModule, Validators, FormGroup } from '@angular/forms';
 import { Customer } from '../model/customer';
 
 @Component({
@@ -13,7 +13,7 @@ import { Customer } from '../model/customer';
 export class RegistrationComponent implements OnInit {
 
   customer: Customer = new Customer();
-
+  successfull: boolean = false;
   constructor(
       private customerService: RegisterationService,
       private router: Router
@@ -31,10 +31,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   register(){
-    //console.log(this.customer);
-    alert(JSON.stringify(this.customer))
-    this.customerService.register(this.customer).subscribe(data =>{
-      alert(JSON.stringify(data));
+   this.customerService.register(this.customer).subscribe(data =>{
       if (data.status == 'SUCCESS'){
         // Verify your email address and re-login
         // Show registration successfull
@@ -44,6 +41,7 @@ export class RegistrationComponent implements OnInit {
       }
       else{
         //error show and re register
+        alert(JSON.stringify(data));
         this.router.navigate(['register']);
       }
     })

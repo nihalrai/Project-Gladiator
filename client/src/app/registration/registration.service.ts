@@ -10,7 +10,7 @@ export class RegisterationService {
 
     constructor(private http: HttpClient) { }
 
-    register(customer){
+    register(customer: Customer){
         const url="http://localhost:8080/register";
         const headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8', 'Accept': 'application/json'});
         return this.http.post<Customer>(url, customer, {headers: headers});

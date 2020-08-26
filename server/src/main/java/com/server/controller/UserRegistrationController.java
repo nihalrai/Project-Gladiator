@@ -28,7 +28,7 @@ public class UserRegistrationController {
 		try {
 			
 			Customer customer = new Customer();
-			
+			System.out.println(customerDto.toString());
             //BeanUtils.copyProperties(customerDto, customer);
             //Redundant code, will be place in a helper method
             customer.setName(customerDto.getName());

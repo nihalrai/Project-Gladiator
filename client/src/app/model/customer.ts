@@ -1,7 +1,7 @@
 export class Customer{
   name: string;
-  email: string;
-  dob: Date;
+  emailId: string;
+  dateOfBirth: Date;
   password: string;
   contactNo: number;
   city: string;

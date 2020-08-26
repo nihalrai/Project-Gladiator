@@ -18,18 +18,18 @@ export class LoginComponent implements OnInit {
   }
   login(){
     this.loginService.login(this.loginDto).subscribe(data =>{
-      alert(JSON.stringify(this.data));
+      alert(JSON.stringify(data));
 
       if(data.status == 'SUCCESS'){
-        let id = data.customerId;
-        let name = data.customerName;
+        let id = data.id;
+        let name = data.name;
         let role = data.role;
-
-        sessionStorage.setItem('customerId', id);
-        sessionStorage.setItem('customerName', name);
+        
+        sessionStorage.setItem('id', id);
+        sessionStorage.setItem('name', name);
         sessionStorage.setItem('role', role);
 
-        this.router.navigate(['user-dashboard']);
+        this.router.navigate(['userDashboard']);
       }
       else{
         //show error on login page fronted part
