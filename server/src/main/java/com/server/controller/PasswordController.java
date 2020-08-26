@@ -1,20 +1,18 @@
 package com.server.controller;
 
-import java.util.UUID;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.server.dto.ForgotPasswordStatus;
+import com.server.dto.OtpDto;
+import com.server.dto.StatusDto;
 import com.server.dto.StatusDto.StatusType;
-import com.server.dto.UserPasswordDto;
-
 import com.server.entity.User;
 import com.server.exception.UserServiceException;
 import com.server.service.EmailService;
@@ -30,60 +28,96 @@ public class PasswordController {
 	private EmailService emailService;
 
 	@PostMapping(path = "/forgotPassword", consumes = "application/json", produces = "application/json")
-	public ForgotPasswordStatus forgotPassword(@RequestBody UserPasswordDto userPasswordDto) {
+	public ForgotPasswordStatus forgotPassword(@RequestBody Map model) {
 
-		User user = userService.getUserByEmail(userPasswordDto.getEmail());
+		User user = userService.getUserByEmail((String)model.get("emailId"));
 
 		try {
-			if (!userService.isUserPresent(userPasswordDto.getEmail())) {
+			if (!userService.isUserPresent((String)model.get("emailId"))) {
 				throw new UserServiceException("User does not exists!");
 			}
 
-			user.setResetToken(UUID.randomUUID().toString());
+			String generatedOtp = UserService.generateOtp();
+			if (generatedOtp == null) {
+				throw new UserServiceException("OTP could not generated, try again!");
+			}
+
+			user.setOtp(generatedOtp);
 
 			userService.addOrUpdateUser(user);
 
-			String resetUrl = "http://localhost:8080/resetPassword?token=" + user.getResetToken();
-
 			SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
-			passwordResetEmail.setFrom("noreply@noreply.com"); // email of sender
+			passwordResetEmail.setFrom("nk.theraja@gmail.com"); // email of sender
 			passwordResetEmail.setTo(user.getEmailId());
 			passwordResetEmail.setSubject("Reset your password");
-			passwordResetEmail.setText("Reset password using below link :\n" + resetUrl);
+			passwordResetEmail.setText("Your otp to reset password is " + generatedOtp);
 
 			emailService.sendEmail(passwordResetEmail);
 
 			ForgotPasswordStatus status = new ForgotPasswordStatus();
 			status.setEmail(user.getEmailId());
-			status.setMessage("Password reset link is send to " + user.getEmailId());
+			status.setMessage("Otp for password reset is send to " + user.getEmailId());
 			status.setStatus(StatusType.SUCCESS);
 
 			return status;
 
-		} catch (Exception e) {
+		} catch (UserServiceException e) {
 			ForgotPasswordStatus status = new ForgotPasswordStatus();
 			status.setEmail(user.getEmailId());
 			status.setMessage(e.getMessage());
-			status.setStatus(StatusType.SUCCESS);
+			status.setStatus(StatusType.FAILURE);
 
 			return status;
 		}
-
 	}
 
-	@GetMapping(path = "/resetPassword")
-	public String forgotPassword(@RequestParam("token") String token) {
+	@PostMapping(path = "/verifyOtp", consumes = "application/json", produces = "application/json")
+	public StatusDto verifyOtp(@RequestBody OtpDto otpDto) {
 		try {
-			User user = userService.getUserByResetToken(token);
+			User user = userService.getUserByOtp(otpDto.getOtp());
 			if (user == null) {
 				throw new UserServiceException("Invalid token");
 			}
+			StatusDto status = new StatusDto();
+			status.setMessage("Registered successfully!");
+			status.setStatus(StatusDto.StatusType.SUCCESS);
+			
+			return status;
 
-			else {
-				return "reset";
-			}
-		} catch (Exception e) {
-			return null;
+		} catch (UserServiceException e) {
+			StatusDto status = new StatusDto();
+			status.setMessage(e.getMessage());
+			status.setStatus(StatusDto.StatusType.FAILURE);
+			return status;
 		}
 	}
+	
+	@PostMapping(path = "/updatePassword", consumes = "application/json", produces = "application/json")  // emailId, oldPassword, newPassword
+	public StatusDto updatePassword(@RequestBody Map model) {
+		try {
+			User user = userService.getUserByEmail((String)model.get("emailId"));
+			
+			if (user == null) {
+				throw new UserServiceException("Unknown email address");
+			}
+			
+			user.setPassword(UserService.getHashedString((String)model.get("newPassword")));
+			user.setOtp(null);
+			
+			userService.addOrUpdateUser(user);
+			
+			StatusDto status = new StatusDto();
+			status.setMessage("Updated successfully!");
+			status.setStatus(StatusDto.StatusType.SUCCESS);
+			
+			return status;
+
+		} catch (UserServiceException e) {
+			StatusDto status = new StatusDto();
+			status.setMessage(e.getMessage());
+			status.setStatus(StatusDto.StatusType.FAILURE);
+			return status;
+		}
+	}
+	
 }

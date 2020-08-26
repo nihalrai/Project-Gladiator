@@ -3,6 +3,7 @@ package com.server.controller;
 import java.time.LocalDate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -58,6 +59,7 @@ public class UserRegistrationController {
             user.setRole("USER");
             
             userService.register(user);
+            
 			try {
 	            SimpleMailMessage registeredMail = new SimpleMailMessage();
 	            registeredMail.setFrom("nk.theraja@gmail.com"); // email of sender
@@ -65,11 +67,10 @@ public class UserRegistrationController {
 	            registeredMail.setSubject("Registered successfully");
 	            registeredMail.setText("Thanks for signing up on General Insurance portal");
 				
-	            System.out.println("Sending mail...");
 	            emailService.sendEmail(registeredMail);
-	            System.out.println("Sent mail...");
+	            
 			}catch(MailException e){
-				e.printStackTrace();
+				throw new UserServiceException("Error occured during sending email!");
 			}
             
 			StatusDto status = new StatusDto();
@@ -77,16 +78,19 @@ public class UserRegistrationController {
 			status.setStatus(StatusDto.StatusType.SUCCESS);
 			return status;
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (UserServiceException e) {
 			StatusDto status = new StatusDto();
-
-			if (e instanceof UserServiceException) {
-				status.setMessage(e.getMessage());
-			} else {
-				status.setMessage(e.getMessage());
-			}
-
+			status.setMessage(e.getMessage());
+			status.setStatus(StatusDto.StatusType.FAILURE);
+			return status;
+		} catch (DataAccessException e) {
+			StatusDto status = new StatusDto();
+			status.setMessage(e.getMessage());
+			status.setStatus(StatusDto.StatusType.FAILURE);
+			return status;
+		} catch (Exception e) {
+			StatusDto status = new StatusDto();
+			status.setMessage(e.getMessage());
 			status.setStatus(StatusDto.StatusType.FAILURE);
 			return status;
 		}

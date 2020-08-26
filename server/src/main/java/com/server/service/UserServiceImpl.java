@@ -71,11 +71,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findByResetToken(String resetToken) {
-		return null;
-	}
-
-	@Override
 	public User getUserByEmailandPassword(String email, String password) {
 
 		try {
@@ -92,8 +87,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserByResetToken(String token) {
-		return userRepository.findUserByResetToken(token);
+	public User getUserByOtp(String otp) {
+		return userRepository.findUserByOtp(otp);
 	}
 
 	@Override

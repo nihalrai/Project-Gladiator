@@ -19,7 +19,7 @@ import com.server.service.UserService;
 @Table(name = "TBL_USER")
 @NamedQuery(name = "is-user-present", query = "select count(u.emailId) from User u where u.emailId = :em")
 @NamedQuery(name = "fetch-login", query = ("select u from User u where u.emailId = :email and u.password = :password"))
-@NamedQuery(name = "fetch-user-using-token", query = ("select u from User u where u.resetToken = :token"))
+@NamedQuery(name = "fetch-user-using-otp", query = ("select u from User u where u.otp = :otp"))
 @NamedQuery(name = "fetch-user-using-email", query = ("select u from User u where u.emailId = :email"))
 public class User {
 
@@ -46,8 +46,8 @@ public class User {
 	@Column(name = "lastLogin")
 	private LocalDateTime lastLogin;
 
-	@Column(name = "resetToken")
-	private String resetToken;
+	@Column(name = "otp")
+	private String otp;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id")
@@ -120,12 +120,12 @@ public class User {
 		this.lastLogin = lastLogin;
 	}
 
-	public String getResetToken() {
-		return resetToken;
+	public String getOtp() {
+		return otp;
 	}
 
-	public void setResetToken(String resetToken) {
-		this.resetToken = resetToken;
+	public void setOtp(String otp) {
+		this.otp = otp;
 	}
 
 }

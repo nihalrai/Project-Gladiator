@@ -21,7 +21,7 @@ public interface UserRepository {
 
 	boolean isUserPresent(String email);
 	
-	User findUserByResetToken(String user);
+	User findUserByOtp(String otp);
 	 
 	User findUserByEmail(String email);
 
