@@ -30,6 +30,17 @@ public class InsurancePlan {
 	
 	@Column(name = "company_name")
 	private String companyName;
+	
+	@Column(name = "Wheeler")
+	private String wheeler;
+	
+	public String getWheeler() {
+		return wheeler;
+	}
+
+	public void setWheeler(String wheeler) {
+		this.wheeler = wheeler;
+	}
 
 	public int getId() {
 		return id;
