@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { LoginDto } from './login.dto';
-
+import { DataDto } from './data.dto';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,15 +11,16 @@ import { LoginDto } from './login.dto';
 export class LoginComponent implements OnInit {
 
   loginDto: LoginDto = new LoginDto();
+  dataDto: DataDto = new DataDto();
 
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
   }
   login(){
-    this.loginService.login(this.loginDto).subscribe(data =>{
-      alert(JSON.stringify(data));
-
+    this.loginService.login(this.loginDto).subscribe(dataDto =>{
+      let data:any;
+      data = dataDto
       if(data.status == 'SUCCESS'){
         let id = data.id;
         let name = data.name;
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
       else{
         //show error on login page fronted part
         this.router.navigate(['login']);
+        
       }
     })
   }

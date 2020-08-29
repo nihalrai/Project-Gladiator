@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+//import com.lti.controller.RenewController.Status.StatusType;
+//import com.lti.controller.RenewController.Status;
+//import com.lti.controller.RenewController.Status.StatusType;
 import com.lti.entity.Policy;
+import com.lti.service.RenewService;
 import com.lti.exception.RenewServiceException;
 import com.lti.repository.RenewRepository;
-import com.lti.service.RenewService;
 
 @RestController
 @CrossOrigin
@@ -34,6 +37,7 @@ public class RenewController {
 		  //System.out.println("Renewed");
 		  newPolicy =  renewRepo.findByPolicyId(policy.getId());
 		  
+		
 		//System.out.println("renewed");
 		//return "success";
 		
@@ -53,6 +57,30 @@ public class RenewController {
 	}
 	return newPolicy;
 	
-	
+	/*public static class Status{
+		private StatusType status;
+		private String message;
+		
+		public static enum StatusType{
+			SUCCESS, FAILURE;
+		}
+
+		public StatusType getStatus() {
+			return status;
+		}
+
+		public void setStatus(StatusType status) {
+			this.status = status;
+		}
+
+		public String getMessage() {
+			return message;
+		}
+
+		public void setMessage(String message) {
+			this.message = message;
+		}
+		
+	}*/
 }
 }

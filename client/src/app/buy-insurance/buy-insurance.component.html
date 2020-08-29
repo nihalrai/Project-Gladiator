@@ -1,1 +1,31 @@
-<p>buy-insurance works!</p>
+<html>
+<head>
+    <title> LTI Insurance </title>   
+</head>
+    <body>
+    <div class="login-box">
+    <img src="../assets/image/avatar.png" class="avatar">
+        <h1>Buy Insurance</h1>
+            <form (ngSubmit) = "buyInsurance()">
+                <input type="text" id="vehicleType" name="vehicleType" placeholder="Vehicle Type" [(ngModel)] = vehicle.type>
+                <input type="text" id="manufacture" name="manufacture" placeholder="Manufacturer" [(ngModel)] = vehicle.manufacture>
+                <input type="text" id="model" name="model" placeholder="Model" [(ngModel)] = vehicle.model>
+                <input type="text" id="dl" name="dl" placeholder="Driving License" [(ngModel)] = vehicle.drivingLicense>
+                <input type="Date" id="pdate" name="pdate" placeholder="Purchase Date" [(ngModel)] = vehicle.purchaseDate>
+                <input type="text" id="rno" name="rno" placeholder="Registration number" [(ngModel)] = vehicle.registrationNo>
+                <input type="text" id="eno" name="eno" placeholder="Engine number" [(ngModel)] = vehicle.engineNo>
+                <input type="text" id="cno" name="cno" placeholder="Chassis number" [(ngModel)] = vehicle.chassisNo>
+                <input type="text" id="etype" name="eType" placeholder="Engine Type"  [(ngModel)] = vehicle.engineType/>
+                <!--<input type="Date" id="lastRenew" name="lastRenew" placeholder="Last Renew Date" [(ngModel)] = vehicle.lastRenewDate/><br/>-->
+                <input type="number" id="cId" name="cId" placeholder="Customer ID" [(ngModel)] = vehicle.customerId/><br/>
+
+            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="submit" value="Homepage" routerLink = "/home" routerLinkActive="active">
+               
+            </form>
+        
+        
+        </div>
+    
+    </body>
+</html>

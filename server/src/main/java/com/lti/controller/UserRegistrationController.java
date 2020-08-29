@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.CustomerDto;
 import com.lti.dto.StatusDto;
-import com.lti.entity.Address;
 import com.lti.entity.Customer;
+import com.lti.entity.Address;
 import com.lti.entity.User;
 import com.lti.exception.UserServiceException;
 import com.lti.service.EmailService;

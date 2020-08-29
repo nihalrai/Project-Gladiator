@@ -3,7 +3,7 @@ import { RegisterationService } from './registration.service';
 import { Router } from '@angular/router';
 import { FormsModule, Validators, FormGroup } from '@angular/forms';
 import { Customer } from '../model/customer';
-
+import { DataDto } from '../login/data.dto';
 @Component({
   selector: 'app-register',
   templateUrl: './registration.component.html',
@@ -11,7 +11,7 @@ import { Customer } from '../model/customer';
 })
 
 export class RegistrationComponent implements OnInit {
-
+datadto: DataDto = new DataDto();
   customer: Customer = new Customer();
   successfull: boolean = false;
   constructor(
@@ -31,13 +31,13 @@ export class RegistrationComponent implements OnInit {
   }
 
   register(){
-   this.customerService.register(this.customer).subscribe(data =>{
-      if (data.status == 'SUCCESS'){
-        // Verify your email address and re-login
-        // Show registration successfull
-
-        //this.router.navigate(['login']);
-        this.router.navigate(['home']);
+    
+   this.customerService.register(this.customer).subscribe(dataDto =>{
+      let data:any;
+      data= dataDto
+      
+      if (data.status == 'SUCCESS') {
+        this.router.navigate(['login']);
       }
       else{
         //error show and re register

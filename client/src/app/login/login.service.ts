@@ -10,7 +10,7 @@ export class LoginService {
 
     constructor(private http: HttpClient) { }
 
-    login(loginDto){
+    login(loginDto){    
         const url="http://localhost:8080/login";
         const headers = new HttpHeaders({'Content-Type': 'application/json', 'Accept': 'application/json'});
         return this.http.post<LoginDto>(url, loginDto, {headers: headers});

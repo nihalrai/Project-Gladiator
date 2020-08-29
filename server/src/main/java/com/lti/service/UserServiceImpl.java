@@ -46,12 +46,12 @@ public class UserServiceImpl implements UserService {
 
 			User user = userRepository.findByEmailPassword(email, UserService.getHashedString(password));
 			Customer customer = userRepository.findCustomerById(user.getCustomer().getId());
-
+			
 			List<String> sessionData = new ArrayList<>();
 			sessionData.add("" + customer.getId());
 			sessionData.add(customer.getName());
 			sessionData.add(user.getRole());
-
+			System.out.println("Reached session");
 			return sessionData;
 
 		} catch (Exception e) {

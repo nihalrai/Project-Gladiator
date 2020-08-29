@@ -1,5 +1,6 @@
 package com.lti.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lti.dto.LoginDto;
+import com.lti.exception.UserServiceException;
 import com.lti.dto.LoginStatusDto;
 import com.lti.dto.StatusDto;
-import com.lti.exception.UserServiceException;
+import com.lti.entity.User;
+import com.lti.dto.LoginDto;
 import com.lti.service.UserService;
 
 @RestController
@@ -29,9 +31,13 @@ public class UserLoginController {
 			if (!userService.isUserPresent(loginDto.getEmail())) {
 				throw new UserServiceException("User does not exists!");
 			}
+			
 
 			List<String> sessionData = userService.login(loginDto.getEmail(), loginDto.getPassword());
-
+			User user = userService.getUserByEmailandPassword(loginDto.getEmail(), loginDto.getPassword());
+			user.setLastLogin(LocalDateTime.now());
+			userService.addOrUpdateUser(user);
+			
 			if (sessionData == null) {
 				throw new UserServiceException("Incorrect Password!");
 			}
@@ -44,28 +50,14 @@ public class UserLoginController {
 			status.setStatus(StatusDto.StatusType.SUCCESS);
 			return status;
 
-		} catch(EmptyResultDataAccessException e) {
+		} catch (EmptyResultDataAccessException e) {
 			LoginStatusDto status = new LoginStatusDto();
 			status.setId(-1);
 			status.setName(null);
 			status.setRole(null);
 			status.setStatus(StatusDto.StatusType.FAILURE);
 			status.setMessage(e.getMessage());
-			return status;
 			
-		} catch (Exception e) {
-			LoginStatusDto status = new LoginStatusDto();
-			status.setId(-1);
-			status.setName(null);
-			status.setRole(null);
-			status.setStatus(StatusDto.StatusType.FAILURE);
-			if (e instanceof UserServiceException) {
-				//e.printStackTrace();
-				status.setMessage(e.getMessage());
-			} else {
-				//e.printStackTrace();
-				status.setMessage(e.getMessage());
-			}
 			return status;
 		}
 

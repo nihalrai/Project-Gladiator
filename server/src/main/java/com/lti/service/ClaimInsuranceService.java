@@ -16,7 +16,7 @@ public interface ClaimInsuranceService {
 	Claim getClaimDataById(int id);
 
 	Customer findByCustomerId(int id);
-
+	
 	Policy findByPolicyId(int id);
 
 }

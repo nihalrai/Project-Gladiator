@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title> LTI Insurance </title>   
+</head>
+    <body>
+    <div class="login-box">
+    <img src="../assets/image/avatar.png" class="avatar">
+        <h1> Claim Insurance </h1>
+            <form (ngSubmit) = "claimInsurance()">
+                
+            <label for="claimDate">Claim Date:</label>
+            <input type="Date" name="claimDate" placeholder="DD/MM/YYYY" [(ngModel)] = claim.date>
+
+            <!--<label for="claimStatus">Claim Status: </label>
+            <input type="text" name="status" placeholder="" [(ngModel)] = claim.status>-->
+
+            <!--<label for="amount">Claim Amount: </label>
+            <input type="number" name="amount" placeholder="" [(ngModel)] = claim.amount>-->
+        
+            <label for="contact">Mobile number</label>
+            <input type="number" name="contact" placeholder="" [(ngModel)] = claim.contactNo>
+
+            <label for="cId">Customer ID</label>
+            <input type="number" name="cID" placeholder="" [(ngModel)] = claim.customerId>
+
+            <label for="pno">Policy ID:</label>
+            <input type="number" name="pno" placeholder="" [(ngModel)] = claim.policyId>
+            
+            <label for="reason">Reason to claim:</label>
+            <select name="reason" id="reason" [(ngModel)] = claim.reason>
+                <option value="natural_disaster">Natural disaster</option>
+                <option value="manmade_disaster">Man made disaster</option>
+                 <option value="road_accident">Road accident</option>
+                <option value="theft">Theft</option>
+            </select>
+
+            
+        <input type="submit" value="Claim Insurance" />
+        
+               
+        </form>
+        <input type="submit" name="submit" value="Homepage" routerLink = "/home" routerLinkActive="active">
+
+        <h2>Update Status for Admin</h2>
+        <form (ngSubmit)="updateStatus()">
+            
+            <label for="claimId">Claim ID:</label>
+            <input type="number" name="claimId" placeholder="" [ngModel] = approveClaim.claimId>
+            
+            <label for="customerID">Customer ID:</label>
+            <input type = "number" name = "customerID" [(ngModel)] = approveClaim.customerId />
+
+
+            <label for="updateStatus">Claim Status:</label> 
+            <select name = "updateStatus" [(ngModel)] = approveClaim.status>
+                <option value = "Approved">Approved</option>
+                <option value = "Not Approved">Not Approved</option>
+            </select>
+            <input type="submit" value="Update Status" />
+        </form>
+        </div>
+    
+    </body>
+</html>

@@ -4,16 +4,15 @@
       alt="Angular Logo"
       src="../assets/image/logo.png"
     />
-    
+    <h1 style="color: white;   text-align: center">Welcome To LTI Insurance</h1>
       <div class="spacer"></div>
       <ul class="navL">
+        
         <li><a [routerLink]="'/home'" active>Home</a></li>
-        <li><a [routerLink]="'/register'">Register</a></li>
-        <li><a [routerLink]="'/login'">Login</a></li>
-        <li>About</li>
-        <li>Contact Us</li>
-        <li>Help</li>
-        <li>FAQ</li>
+        <li *ngIf="!isUserLoggedIn()"><a [routerLink]="'/register'">Register</a></li>
+        <li *ngIf="!isUserLoggedIn()"><a [routerLink]="'/login'">Login</a></li>
+        <li *ngIf="isUserLoggedIn()"><a [routerLink]="'/home'" (click)="logout()">Logout</a></li>
+        <li><a [routerLink]="'/about'">About</a></li>
+        <li><a [routerLink]="'/contactUs'">Contact Us</a></li>
       </ul>
-      
   </div>

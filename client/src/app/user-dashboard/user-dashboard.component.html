@@ -1,12 +1,105 @@
-<div class="spacer">
-    <ul class="navL">
-        <li><button (click)="logout()">Logout </button></li>
-    </ul>
-</div>
-<div class="content" role="main">
-    <div class="card-container">
-        <p>{{ id }}</p>
-        <p>{{ name }}</p>
-        <p>{{ role }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LTI Insurance</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+    
+<!-- profile -->
+<section class="profile">
+<div  class="records">
+    
+    <p>Statistics</p> 
+    <div>
+
+    <div class="marks">
+        <h1 class="orange">13</h1>
+        <p>Insurance <br/> Policy </p>
+    </div>
+    <div class="marks">
+        <h1 class="blue">3</h1>
+        <p>Policies<br/>Renewed</p>
+    </div>
+    <div class="marks">
+        <h1 class="orange">10</h1>
+        <p>Claims<br/>Made</p>
     </div>
 </div>
+</div>
+<div class="info">
+    <img class="profilepic" src="imges/pic.jpg" alt="">
+    <p>Welcome! <br>
+        <span class="fw">User</span> <br>     
+       <button>Generate pdf</button>
+    </p>
+     
+</div>
+    
+</section>
+<section class="details">
+   
+    <div class="history">
+  <h3 class="grey fw"> Policies: </h3>
+        <div class="list b-bottom">
+    <div class="list-detail">
+       <p>Policy no: <span>001</span> </p>
+      <p>Vehicle model:  <span class="orange">Swift</span></p>
+      <p>Registration no: <span>UKVCH789</span> </p>
+      <p>Claim amount: <span>10000</span> </p>
+    
+   </div>
+   
+    <div class="score grey">
+        <p><button><a style="color:white" routerLink="/claimInsurance" routerLinkActive="active">Claim</a></button>  <span ><button><a style="color:white" routerLink="/renew" routerLinkActive="active">Renew</a></button></span>
+    </p>
+</div>
+</div>
+<div class="list b-bottom">
+    <div class="list-detail">
+       <p>Policy no: <span>002</span> </p>
+      <p>Vehicle model:  <span class="orange">Santro</span></p>
+      <p>Registration no: <span>UKVCH456</span> </p>
+      <p>Claim amount: <span>40000</span> </p>
+    
+   </div>
+   
+    <div class="score grey">
+        <p><button><a style="color:white" routerLink="/claimInsurance" routerLinkActive="active">Claim</a></button>  <span ><button><a style="color:white" routerLink="/renew" routerLinkActive="active">Renew</a></button></span>
+    </p>
+</div>
+</div>
+<div class="list b-bottom">
+    <div class="list-detail">
+       <p>Policy no: <span>003</span> </p>
+      <p>Vehicle model:  <span class="orange">Dio</span></p>
+      <p>Registration no: <span>UKVCH123</span> </p>
+      <p>Claim amount: <span>20000</span> </p>
+    
+   </div>
+   
+    <div class="score grey">
+        <p><button><a style="color:white" routerLink="/claimInsurance" routerLinkActive="active">Claim</a></button>  <span ><button><a style="color:white" routerLink="/renew" routerLinkActive="active">Renew</a></button></span>
+    </p>
+</div>
+</div>
+ 
+  
+  
+  
+
+</div>
+
+
+
+</section>
+
+</div>
+</body>
+</html>

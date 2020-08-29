@@ -1,0 +1,52 @@
+
+<html>
+<head>
+    <title> LTI Insurance </title>   
+</head>
+    <body>
+    <div class="login-box">
+    <img src="../assets/image/avatar.png" class="avatar">
+        <h1>Renew Insurance</h1>
+            <form name="form" (ngSubmit) = "f.form.valid && renewPlan()" #f="ngForm" novalidate >
+            <p>Policy number</p>
+            <input class="form-control" #id="ngModel" type="text" [(ngModel)]=policy.id name="id" placeholder="" required>
+                <div *ngIf="(f.submitted && id.invalid) || (id.dirty || id.touched)" class="alert alert-danger">
+                <div *ngIf="id.errors.required"> Policy Id is required. </div></div>
+                
+            <p>Mobile number</p>
+            <input class="form-control" #contact="ngModel" type="text" [(ngModel)]=customer.contact name="contact" placeholder="" required>
+                <div *ngIf="(f.submitted && contact.invalid) || (contact.dirty || contact.touched)" class="alert alert-danger">
+                <div *ngIf="contact.errors.required"> Contact is required. </div></div>
+
+            <p>Email</p>
+            <input class="form-control" #email="ngModel" type="email" [(ngModel)]=customer.email name="email" placeholder="" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                <div *ngIf="(f.submitted && email.invalid) || (email.dirty || email.touched)" class="alert alert-danger">
+                <div *ngIf="email.errors.required"> Email is required. </div>
+                <div *ngIf="email.errors.pattern"> Email is invalid. </div></div>
+
+                
+            
+            <label for="plans">Plans:</label>
+            <select name="plans" id="plans" [(ngModel)]=insurance_plan.insurance_type required>
+                <option selected value="">Select</option>
+                <option value="third_party" >Third Party Liability</option>
+                <option value="comprehensive" >Comprehensive</option>
+            </select>
+
+            <label for="duration">Duration</label>
+            <select name="duration" id="duration" [(ngModel)]=policy.duration required>
+                <option selected value="">Select</option>
+                <option value=1 >One Year</option>
+                <option value=2 >Two Year</option>
+                <option value=3 >Three Year</option>
+            </select>
+            <button type="submit">Renew</button>
+             
+            </form>
+        
+        
+        </div>
+    
+    </body>
+</html>
+

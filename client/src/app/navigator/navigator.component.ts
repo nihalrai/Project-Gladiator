@@ -11,4 +11,17 @@ export class NavigatorComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  isUserLoggedIn() {
+    let user = sessionStorage.getItem('id')
+    if (user === null) {
+        return false
+    }
+    else{
+      return true
+    }
+  }
+
+  logout(){
+    sessionStorage.clear()
+  }
 }

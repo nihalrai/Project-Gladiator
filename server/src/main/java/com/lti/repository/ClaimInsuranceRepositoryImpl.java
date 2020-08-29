@@ -15,7 +15,7 @@ import com.lti.entity.Policy;
 import com.lti.entity.Vehicle;
 
 @Repository
-public class ClaimInsuranceRepositoryImpl implements ClaimInsuranceRepository{
+public class ClaimInsuranceRepositoryImpl implements ClaimInsuranceRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 

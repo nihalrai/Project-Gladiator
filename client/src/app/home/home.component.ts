@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  checkSessionBuy(){
+    if(sessionStorage.getItem('id')==null){
+      alert("Please login first.");
+    }
+    else 
+    this.router.navigate(['buyInsurance']);
+  }
+  checkSessionClaim(){
+    if(sessionStorage.getItem('id')==null){
+      alert("Please login first.");
+    }
+    else 
+    this.router.navigate(['claimInsurance']);
+  }
+  checkSessionRenew(){
+    if(sessionStorage.getItem('id')==null){
+      alert("Please login first.");
+    }
+    else 
+    this.router.navigate(['renew']);
   }
 
 }

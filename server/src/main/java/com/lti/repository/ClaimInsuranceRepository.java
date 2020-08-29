@@ -17,7 +17,7 @@ public interface ClaimInsuranceRepository {
 	List<Claim> fetchAllClaimData();
 
 	Customer findByCustomerId(int id);
-
+	
 	Policy findByPolicyId(int id);
 
 }

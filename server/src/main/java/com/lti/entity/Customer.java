@@ -43,17 +43,6 @@ public class Customer {
 	@JoinColumn(name="address_id")
 	private Address address;
 	
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Claim> claims;
-	
-	public List<Claim> getClaims() {
-		return claims;
-	}
-
-	public void setClaims(List<Claim> claims) {
-		this.claims = claims;
-	}
-
 	public int getId() {
 		return id;
 	}

@@ -1,8 +1,14 @@
 package com.lti.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +20,9 @@ import com.lti.entity.Claim;
 import com.lti.entity.Customer;
 import com.lti.entity.Policy;
 import com.lti.exception.InsuranceServiceException;
+import com.lti.exception.UserServiceException;
 import com.lti.service.ClaimInsuranceService;
+import com.lti.service.EmailService;
 import com.lti.status.Status;
 import com.lti.status.Status.StatusType;
 
@@ -24,13 +32,17 @@ public class ClaimInsuranceController {
 	@Autowired
 	private ClaimInsuranceService service;
 
+	@Autowired
+	private EmailService emailService;
+	
+	
 	@PostMapping(path = "/addClaimInsurance", consumes = "application/json", produces = "application/json")
 	public Status submitClaimDetails(@RequestBody ClaimDto claimDto) {
 		try {
 
 			Claim claim = new Claim();
 			claim.setDate(claimDto.getDate());
-			claim.setStatus(claimDto.getStatus());
+			claim.setStatus("PENDING");
 			claim.setAmount(claimDto.getAmount());
 			claim.setReason(claimDto.getReason());
 			claim.setContactNo(claimDto.getContactNo());
@@ -61,40 +73,36 @@ public class ClaimInsuranceController {
 
 			// Check if session id is of ADMIN role from User table -not added
 			// is role is not admin then throw InsuranceServiceException
-
+			
 			Claim claim = service.getClaimDataById(approveClaimDto.getClaimId());
-
+			
+			if(claim == null) {
+				throw new UserServiceException("Invalid claim id");
+			}
+			
 			claim.setStatus(approveClaimDto.getStatus());
 
 			service.saveAndUpdateOfClaimInsuranceDetails(claim);
+			
+			try {
+	            SimpleMailMessage registeredMail = new SimpleMailMessage();
+				registeredMail.setFrom("nk.theraja@gmail.com"); // email of sender
+				registeredMail.setTo(claim.getCustomer().getEmailId());
+				registeredMail.setSubject("Claim Status Change");
+				registeredMail.setText("Your claim " + claim.getId() + " is " + claim.getStatus());
 
+				//emailService.sendEmail(registeredMail);
+
+			} catch (MailException e) {
+				throw new UserServiceException("Error occured during sending email!");
+			}
 			Status status = new Status();
 			status.setStatus(StatusType.SUCCESS);
 			status.setMessage("Claim status is updated Successfully.");
 			return status;
 
 		} catch (Exception e) {
-			Status status = new Status();
-			status.setMessage(e.getMessage());
-			status.setStatus(StatusType.FAILURE);
-
-			return status;
-		}
-	}
-	
-	@PostMapping(path = "/getAllClaims", consumes = "application/json", produces = "application/json")
-	public Status getClaims(@RequestBody GetAllClaims getAllClaims) {
-		try {
-
-			// Check if session id is of ADMIN role from User table -not added
-			// is role is not admin then throw InsuranceServiceException
-
-			Status status = new Status();
-			status.setStatus(StatusType.SUCCESS);
-			status.setMessage("Claim status is updated Successfully.");
-			return status;
-
-		} catch (Exception e) {
+			e.printStackTrace();
 			Status status = new Status();
 			status.setMessage(e.getMessage());
 			status.setStatus(StatusType.FAILURE);

@@ -1,42 +1,45 @@
 <div class="card-container">
-<a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-    <img src="../assets/image/img2.jpg" width="200"><br/>
-   
+    <a class="card" (click)="checkSessionBuy()" target="_blank" rel="noopener" >
+      <img src="../assets/image/img2.jpg" width="200"><br/>
+     
 
-    <h2>Buy Insurance</h2>
+      <h2>Buy Insurance</h2>
 
-       </a>
+         </a>
 
-        <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-    <img src="../assets/image/img5.jpg" width="200"><br/>
-   
+          <a class="card" (click)="checkSessionRenew()" target="_blank" rel="noopener" >
+      <img src="../assets/image/img5.jpg" width="200"><br/>
+     
 
-    <h2>Renew Insurance</h2>
+      <h2>Renew Insurance</h2>
 
-       </a>
-<a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-    <img src="../assets/image/img3.jpg" width="200"><br/>
-   
+         </a>
+ <a class="card" target="_blank" rel="noopener" routerLink="/estimate" routerLinkActive="active">
+      <img src="../assets/image/img3.jpg" width="200"><br/>
+     
 
-    <h2>Calculate Insurance</h2>
+      <h2>Calculate Claim Amount</h2>
 
-       </a>
-<a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-    <img src="../assets/image/img1.jpg" width="200"><br/>
-   
+         </a>
+ <a class="card" (click)="checkSessionClaim()" target="_blank" rel="noopener" >
+      <img src="../assets/image/img1.jpg" width="200"><br/>
+     
 
-    <h2>Claim Insurance</h2>
+      <h2>Claim Insurance</h2>
 
-       </a>
-
-
-   <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-    <img src="../assets/image/img4.jpg" width="200"><br/>
-   
-
-    <h2>Register</h2>
-
-       </a>
+         </a>
 
 
-</div>
+     <a class="card" target="_blank" rel="noopener" routerLink="/registration" routerLinkActive="active">
+      <img src="../assets/image/img4.jpg" width="200"><br/>
+     
+
+      <h2>Register</h2>
+
+         </a>
+
+
+  </div>
+  <h2>Why Insurance you ask?<br/>
+      <li>One may be confident about his driving skills and would tend to avoid buying an insurance cover as it always pinches to pay the Premium especially when you do not have to make any claims. But you only realize the value of insurance, when you are in a situation and you may need to make a claim.</li>
+    <li>Possessing motor insurance can also provide protection from loss arising due to legal action and any Legal Liability that may arise due to accidental damages to surrounding property or people from the collision/accident of your vehicle.</li></h2>

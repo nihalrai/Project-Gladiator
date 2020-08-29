@@ -8,38 +8,38 @@
         <h1>Register</h1>
             <form name="form" (ngSubmit) = "f.form.valid && register()" #f="ngForm" novalidate >               
                 <input class="form-control" #name="ngModel" type="text" id="name" [(ngModel)]=customer.name name="name" placeholder="Your name.." required minlength="4" required>
-                    <div *ngIf="f.submitted && name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                    <div *ngIf="(f.submitted && name.invalid) || (name.dirty || name.touched)" class="alert alert-danger">
                     <div *ngIf="name.errors.required"> Name is required. </div>
                     <div *ngIf="name.errors.minlength"> Name must be of more than 4 letters. </div></div>
                 
                 <input class="form-control" #emailId="ngModel" type="text" id="emailId" [(ngModel)]=customer.emailId name="emailId" placeholder="abc@xyz.." pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-                    <div *ngIf="f.submitted && emailId.invalid && (emailId.dirty || emailId.touched)" class="alert alert-danger">
+                    <div *ngIf="(f.submitted && emailId.invalid) || (emailId.dirty || emailId.touched)" class="alert alert-danger">
                     <div *ngIf="emailId.errors.required"> Email is required. </div>
                     <div *ngIf="emailId.errors.pattern"> Email is invalid. </div></div>
                
                 <input class="form-control" #dateOfBirth="ngModel" type="date" id="dob" [(ngModel)]=customer.dateOfBirth name="dob" placeholder="DD/MM/YY" required>
-                    <div *ngIf="f.submitted && dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)" class="alert alert-danger">
+                    <div *ngIf="(f.submitted && dateOfBirth.invalid) || (dateOfBirth.dirty || dateOfBirth.touched)" class="alert alert-danger">
                     <div *ngIf="dateOfBirth.errors.required"> Date of birth is required. </div> </div>
 
                 
                 <input class="form-control" #contactNo="ngModel" type="text" id="tel" [(ngModel)]=customer.contactNo name="contact" placeholder="Enter your contact no" required minlength="10" required>
-                    <div *ngIf="f.submitted && contactNo.invalid && (contactNo.dirty || contactNo.touched)" class="alert alert-danger">
+                    <div *ngIf="(f.submitted && contactNo.invalid) || (contactNo.dirty || contactNo.touched)" class="alert alert-danger">
                     <div *ngIf="contactNo.errors.required"> Contact no is required. </div> </div>
         
                 <input class="form-control" #pincode="ngModel" type="text" id="pincode" [(ngModel)]=customer.pincode name="pincode" placeholder="Enter your pinocde" required minlength="6" required maxlength="6" required>
-                    <div *ngIf="f.submitted && pincode.invalid && (pincode.dirty || pincode.touched)" class="alert alert-danger">
+                    <div *ngIf="(f.submitted && pincode.invalid) || (pincode.dirty || pincode.touched)" class="alert alert-danger">
                     <div *ngIf="pincode.errors.required"> Pincode is required. </div> </div>
 
-                <input class="form-control" #city="ngModel" type="text" id="city" [(ngModel)]=customer.city name="city" placeholder="Enter your city">
-                    <div *ngIf="f.submitted && city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
+                <input class="form-control" #city="ngModel" type="text" id="city" [(ngModel)]=customer.city name="city" placeholder="Enter your city" required>
+                    <div *ngIf="(f.submitted && city.invalid) || (city.dirty || city.touched)" class="alert alert-danger">
                     <div *ngIf="city.errors.required"> City is required. </div> </div>
 
                 <input class="form-control" #landmark="ngModel" type="text" id="landmark" [(ngModel)]=customer.landmark name="landmark" placeholder="Enter your landmark" required minlength="5" required>
-                    <div *ngIf="f.submitted && landmark.invalid && (landmark.dirty || landmark.touched)" class="alert alert-danger">
+                    <div *ngIf="(f.submitted && landmark.invalid) || (landmark.dirty || landmark.touched)" class="alert alert-danger">
                     <div *ngIf="landmark.errors.required"> Landmark is required. </div> </div>
 
                 <input class="form-control" #password="ngModel" type="password" id="password" [(ngModel)]=customer.password name="password" placeholder="Enter password" required minlength="5" required>
-                    <div *ngIf="f.submitted && password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                    <div *ngIf="(f.submitted && password.invalid) || (password.dirty || password.touched)" class="alert alert-danger">
                     <div *ngIf="password.errors.required"> Password is required. </div> </div>
 
                 

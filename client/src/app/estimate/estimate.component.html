@@ -1,0 +1,35 @@
+<!--<h3>To calculate Estimate Claim Amount, please provide below information</h3>
+<form (ngSubmit)="calculateClaim()">
+    Enter Age of Vehicle:<input type="text" name="t1" [(ngModel)]=premium.age/>
+    Enter loss suffered:<input type="text" name="t3" [(ngModel)]=premium.lossSuffered/>
+    Enter Cost of Vehicle:<input type="text" name="t4" [(ngModel)]=premium.totalCostOfVehicle/>
+    <button type="submit">Calculate</button>
+</form> 
+-->
+
+
+<html>
+<head>
+    <title> LTI Insurance </title>   
+</head>
+    <body>
+    <div class="login-box">
+    <img src="../assets/image/avatar.png" class="avatar">
+        <h1>Calculate Insurance</h1>
+            <form (ngSubmit)="calculateClaim()">
+            <p>Age of Vehicle</p>
+            <input type="text" name="age" placeholder="" [(ngModel)]=premium.age>
+            <p>Loss Suffered</p>
+            <input type="text" name="loss" placeholder="" [(ngModel)]=premium.lossSuffered>
+            <p>Total cost of Vehicle</p>
+            <input type="text" name="cost" placeholder="" [(ngModel)]=premium.totalCostOfVehicle>
+            
+            <button type="submit">Calculate</button>
+             
+            </form>
+        
+        
+        </div>
+    
+    </body>
+</html>
